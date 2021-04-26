@@ -1,0 +1,140 @@
+*{ 
+    padding: 0; 
+    margin: 0; 
+    box-sizing: border-box;
+}
+
+a { 
+    text-decoration: none;
+    color: white;
+}
+
+header { 
+    width: 100%; 
+    height: 50px; 
+    background-color: rgb(104,104,104); 
+    margin-bottom: 10px; 
+    position: relative;
+    border-bottom: solid 2px black; 
+    box-shadow: 0 20px 5px -2px rgba(0, 0, 0, 0.2);
+}
+
+body { 
+    background-color: rgb(56,56,56);
+}
+
+nav { 
+    height: 50px; 
+    display: block; 
+    display: block;
+    width: 1200px;
+    margin: 0 auto; 
+    margin-bottom: 20px; 
+    font-family: Arial, Helvetica, sans-serif;
+   
+}
+
+nav ul { 
+    list-style-type: none; 
+    position: absolute; 
+    bottom: 0;
+  
+} 
+
+nav li { 
+    display:block; 
+    float: left; 
+    width: 200px;
+    height: 30px;
+    margin-left: 33px;
+    text-align: center; 
+    font-size: 1.5em;
+    font-weight: 600; 
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+} 
+
+nav li :hover{ 
+    color: lightgrey;;
+}
+
+/* START OF COMICS PAGE */ 
+.chapters #wrapper{ 
+    width: 940px; 
+    height: 700px; 
+    position: relative; 
+    margin: 0 auto; 
+    background-color: greenyellow; 
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#chapters_table { 
+    background: green; 
+    width: 100% ;
+    margin: 0 auto;
+}
+
+#chap_table { 
+    background: blue; 
+    padding: 10px; 
+    border: 1px solid black; 
+    width: 100%; 
+} 
+
+#chap_table tr{ 
+    width: 100%; 
+    background: red; 
+  
+} 
+
+.th_one { 
+    width: 70%; 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+}
+
+table td{ 
+    padding-top: 10px; 
+    padding-bottom: 10px; 
+    padding-left: 5px; 
+}
+
+.register #login-form-container{ 
+    margin: 0 auto; 
+    width: 940px; 
+} 
+
+.register label{ 
+    width: 80%; 
+    padding-left: 10px; 
+    font-size: 1.25em; 
+    letter-spacing: 1px;
+    padding: 5px;
+    margin-left: 10px;
+    display: block;
+}
+
+.register input{ 
+    width: 80%; 
+    background-color: red;
+    border-radius: 5px; 
+    height: 1.8em; 
+    margin-left: 10px; 
+}
+
+.register form{ 
+    width: 750px; 
+    background: green;  
+    margin: 0 auto; 
+
+}
+
+/* START OF UPLOADS CSS */ 
+ #uploadwrapper{ 
+    width: 940px; 
+    height: 500px; 
+    background-color: green; 
+    position: relative;
+    margin:0 auto; 
+    color: #fff; 
+}

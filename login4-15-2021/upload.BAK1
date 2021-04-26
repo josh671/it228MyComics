@@ -1,0 +1,92 @@
+<?php 
+session_start();
+include('./includes/config.php'); 
+
+//declare errors 
+$error = array(); 
+ 
+$db = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die('initial host connection problems'); 
+
+
+if(isset($_POST['submit'])){ 
+    $file=$_FILES['file']; 
+    $fileName=$_FILES['file']['name']; 
+    $fileSize=$_FILES['file']['size']; 
+    $fileError=$_FILES['file']['error']; 
+    $fileTmpName=$_FILES['file']['tmp_name']; 
+    $name=$_POST['chapName']; 
+    $chapterName=$_POST['chapterName']; 
+    $fileExt = explode('.', $fileName); 
+    $fileActualExt = strtolower(end($fileExt)); //want the extension which is last item of $fileExt array; 
+    $allowed = array('jpg', 'jpeg', 'png'); 
+    
+    //getting chapter name and file name 
+    $fileChapterNameAndPages = strtolower(reset($fileExt)); 
+    $chapterAndPagesArray = explode('-',$fileChapterNameAndPages); 
+    $chapterNumber = strtolower(reset($chapterAndPagesArray));
+    $pageNumber = strtolower(end($chapterAndPagesArray)); 
+  
+    //set of if statements to check if 
+        //extension allowed 
+        //errors happened 
+        //file size 
+        //if not take temporary upload and save to uploads 
+    if(in_array($fileActualExt, $allowed)){ //checks array $allowed to see if extensions allowed
+        if($fileError == 0){ 
+            if($fileSize < 10000000){ 
+                // do something 
+                if(isset($name)){     
+                    //added if for error count
+                    if(count($error) == 0 ){
+                        $user_check_query = "SELECT * FROM Pages WHERE chapterNumber ='$chapterNumber' AND pageNumber='$pageNumber' LIMIT 1"; 
+                        $result = mysqli_query($db, $user_check_query);
+                        $user = mysqli_fetch_assoc($result); 
+                    
+                        if( $user['chapterNumber'] == $chapterNumber && $user['pageNumber'] == $pageNumber){ 
+                            array_push($error, 'already exists'); 
+                            echo '<p>True</p>'; 
+                            echo '<p>'.$chapterNumber.'</p>'; 
+                            echo '<p>'.$user['chapterNumber'].'</p>';
+                            echo '<p>'.$user['pageNumber'].'</p>';
+                        }elseif($user['chapterNumber'] == $chapterNumber && $user['pageNumber'] !== $pageNumber){
+                            //print($pageNumber);
+                            print('<p>part2</p>');
+                            $query2="INSERT INTO `Pages` (`chapterNumber`, `pageNumber`, `imageName`) VALUES ('$chapterNumber', '$pageNumber', '$fileName')"; 
+   
+                            //use to check for myqli errors 
+                                    mysqli_query($db, $query2); 
+                           
+                                    $fileNameNew = uniqid('', true).".".$fileActualExt; 
+                                    $fileDestination = 'uploads/'.$fileNameNew; 
+        
+                                    move_uploaded_file($fileTmpName, $fileDestination); 
+    
+                    }elseif(strval($user['chapterNumber']) !== $chapterNumber && strval($user['pageNumber']) !== $pageNumber){ 
+                        print_r($user['chapterNumber']); 
+                        //print($pageNumber);
+                        $query1="INSERT INTO `Chapters` (`chapterNumber`, `Description`) VALUES ('$chapterNumber', '$chapterName')";
+                        $query2="INSERT INTO `Pages` (`chapterNumber`, `pageNumber`, `imageName`) VALUES ('$chapterNumber', '$pageNumber', '$fileName')"; 
+                        echo '<p>Part 3</p>'; 
+                       print_r($user['chapterNumber'] );
+                //use to check for myqli errors 
+                        mysqli_query($db,$query1); 
+                        mysqli_query($db, $query2); 
+               
+                    $fileNameNew = uniqid('', true).".".$fileActualExt; 
+                    $fileDestination = 'uploads/'.$fileNameNew; 
+
+                    move_uploaded_file($fileTmpName, $fileDestination); 
+                    }else{ 
+                        print_r('not working'); 
+                    }
+                    }//end if error count
+                }//end if name
+            }//end if filesize
+        }else { 
+            echo 'No errors happened'; 
+        }//end else
+    }else { 
+        echo 'Format not allowed'; 
+    }//end format
+    //header("Location: uploadform.php?success=success");// to return to any page
+}
