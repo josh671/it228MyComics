@@ -130,11 +130,26 @@ table td{
 }
 
 /* START OF UPLOADS CSS */ 
- #uploadwrapper{ 
-    width: 940px; 
-    height: 500px; 
-    background-color: green; 
-    position: relative;
-    margin:0 auto; 
-    color: #fff; 
+
+
+#upload_form{ 
+    width: 400px; 
+    display: block; 
+    border-radius: 6px; 
+    border: 1px solid grey;
+   
+} 
+
+#upload_form fieldset{ 
+     
+    padding: 10px;
+}
+
+#upload_form input{ 
+    width: 100%; 
+    margin-bottom: 10px;
+} 
+
+#upload_form fieldset{ 
+    padding: 30px; 
 }
