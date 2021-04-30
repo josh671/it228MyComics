@@ -1,9 +1,9 @@
 <?php 
 ob_start(); //- wont transfer header form login to index
 define('THIS_PAGE', basename($_SERVER['PHP_SELF'])); 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL); 
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL); 
 
 
 define('DEBUG', 'FALSE'); 

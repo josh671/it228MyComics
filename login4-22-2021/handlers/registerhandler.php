@@ -61,7 +61,7 @@ $reg_check_query="SELECT * FROM `Authors` WHERE `AuthorUserName` = '$userName' O
 
 $result = mysqli_query($db, $reg_check_query); 
 $user = mysqli_fetch_assoc($result); 
-var_dump($user); 
+//var_dump($user); 
 if($user){
     if($user['AuthorUserName'] === $userName || $user['AuthorEmail'] === $fullemail){ 
         array_push($Reg_error, "That User Name has already been chosen"); 
@@ -112,14 +112,23 @@ if(isset($_POST['login_user'])){
         $password = md5($password1);  
         
         $query = "SELECT * FROM `Authors` WHERE `AuthorUserName` = '$userName' AND `Password` = '$password' LIMIT 1"; 
-        $results = (mysqli_query($db, $query)); 
+        $results = mysqli_query($db, $query); 
         if(mysqli_num_rows($results) == 1){ 
-            var_dump(mysqli_num_rows($results));
-            var_dump($results);
-            
-            $_SESSION['userName'] = $userName;
-            $_SESSION['success'] = $success;
-            //header('Location: uploadform.php');
+           //var_dump(mysqli_num_rows($results));
+           //var_dump($results);
+           /////////////////////////////////////////
+            $getID= "SELECT `AuthorID` FROM `Authors` WHERE `AuthorUserName` = '$userName' LIMIT 1";  
+            $IDresult = mysqli_query($db, $getID);
+            if(mysqli_num_rows($IDresult) > 0){ 
+                $row=mysqli_fetch_assoc($IDresult);
+                $id=$row['AuthorID']; 
+                var_dump($id);
+                $_SESSION['id'] = $id; 
+                $_SESSION['AuthorUserName'] = $userName; 
+                $_SESSION['success'] = $success;
+            }
+/////////////////////////////////////////////////////////////////////
+            header('Location: uploadform.php');
              //sends to homepage if logins successful
          } else {
             array_push($Log_error, 'Wrong User Name or Password');
