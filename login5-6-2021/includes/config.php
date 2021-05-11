@@ -58,6 +58,13 @@ switch(THIS_PAGE){
         $center = ''; 
         $body = 'comics'; 
     break; 
+    case 'chapters-views.php': 
+        $title = 'chapters'; 
+        $mainHeadline = ''; 
+        $center = ''; 
+        $body = 'chapters'; 
+    break; 
+     
    
 
 }//end of switch, total 4
