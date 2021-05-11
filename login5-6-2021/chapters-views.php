@@ -33,19 +33,18 @@ if(mysqli_num_rows($result) > 0){
       
 
       
-      echo '<div class="col-sm-3" >
-      <div class="inside shadow">';
-    
-         echo '<img class="rounded-circle z-depth-2" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-            data-holder-rendered="true">';
+         echo '<div class="col-sm-3" >
+         <div class="inside shadow">';
          echo '<p class="link"><a href="pages-views.php?id='.$row['ComicID']. '+'. $row['chapterNumber'] .'" >Checkout this Chapter</a></p>'; 
+
+         echo '<p class="userName">' . $row['chapterDescription'] . '</p>'; 
          echo '<p class="userName">' . $row['chapterNumber'] . '</p>'; 
          echo '<p class="userName">' . $row['ChapterName'] . '</p>'; 
          echo '</div></div>'; 
                           }
 
               }else {//what if there are no people 
-                echo 'There are no Appointments'; 
+                echo 'There chapters for this comic. '; 
             }//closing else 
             //release the web server 
             @mysqli_free_result($result); 
@@ -58,7 +57,7 @@ if(mysqli_num_rows($result) > 0){
 <div class="row">
 <?php 
 
-$sql = "SELECT * FROM `Pages` WHERE comicID = '$id'"; 
+$sql ="SELECT * FROM `Pages` WHERE `comicID` = '$comicID' ORDER BY `chapterNumber`, `pageNumber` "; 
 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die(myerror( __File__, __LINE__, mysqli_connect_error()));
 $result = mysqli_query($iConn,$sql) or die(myerror( __File__, __LINE__, mysqli_connect_error())); 
 //var_dump($result);
@@ -67,26 +66,20 @@ if(mysqli_num_rows($result) > 0){
     while ($row = mysqli_fetch_assoc($result) ){ 
       $comicID=(int)$row['ComicID'];
      
-      $comic_check_query = "SELECT * FROM `Chapters` WHERE Chapters.ComicID= '$comicID'";
-      $comicResults = mysqli_query($db, $comic_check_query); 
-      $comics=mysqli_fetch_all($comicResults);  
-       //var_dump($comics); 
-      
-
       
       echo '<div id="images_boxes"  >
       <div class="inside shadow">';
     
-         echo '<img class="rounded-circle z-depth-2" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-            data-holder-rendered="true">';
+         
          echo '<p>Checkout this Chapters pages</a></p>'; 
          echo '<p class="userName">' . $row['chapterNumber'] . '</p>'; 
          echo '<p class="userName">' . $row['pageNumber'] . '</p>'; 
+         echo '<img src="uploads/'.$row['imageName'].'">';
          echo '</div></div>'; 
                           }
 
               }else {//what if there are no people 
-                echo 'There are no Appointments'; 
+                echo 'There are Pages for This Chapter Yet!'; 
             }//closing else 
             //release the web server 
             @mysqli_free_result($result); 
