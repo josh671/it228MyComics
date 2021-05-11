@@ -52,6 +52,12 @@ switch(THIS_PAGE){
         $center = ''; 
         $body = 'register'; 
     break; 
+    case 'comics-views.php': 
+        $title = 'comics'; 
+        $mainHeadline = ''; 
+        $center = ''; 
+        $body = 'comics'; 
+    break; 
    
 
 }//end of switch, total 4

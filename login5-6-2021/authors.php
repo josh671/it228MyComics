@@ -5,7 +5,7 @@
 $db = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die('initial host connection problems'); ?>
 
 <div id="container">
-<h1>Here are a list of my Comics</h1> 
+<h1>Here are a list of Authors</h1> 
 
    <!-- START OF TABLE DIV -->
    <div id="auth_table">
@@ -81,7 +81,7 @@ $db = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die('initial hos
            
                 echo '<img class="rounded-circle z-depth-2" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
                    data-holder-rendered="true">';
-                echo '<p class="link"><a href="chapter-view.php?id='.$row['AuthorID'].'" >Check out this Authors Comics!</a></p>'; 
+                echo '<p class="link"><a href="comics-views.php?id='.$row['AuthorID'].'" >Check out this Authors Comics!</a></p>'; 
                 echo '<p class="userName">' . $row['AuthorUserName'] . '</p>'; 
                 echo '<p class="description">'.$row['AuthorDescription'].'</p>';
                 echo '<p class="comic_total">Total Comics: '.count($comics).'</p>'; 
