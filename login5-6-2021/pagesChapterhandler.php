@@ -39,16 +39,19 @@ if(isset($_POST['upload'])){
     $chapterNumber=$_POST['chapterNumber']; 
     $chapterName=$_POST['chapterName']; 
     $pageNumber=$_POST['pageNumber'];
-
+   
+    
     $fileExt = explode('.', $fileName); 
     $fileActualExt = strtolower(end($fileExt)); //want the extension which is last item of $fileExt array; 
     $allowed = array('jpg', 'jpeg', 'png'); 
-    
+    $fileChapPageNum =$fileExt[0]; 
     //getting chapter name and file name 
     $fileChapterNameAndPages = strtolower(reset($fileExt)); 
     $chapterAndPagesArray = explode('-',$fileChapterNameAndPages); 
     $picChapterNumber = strtolower(reset($chapterAndPagesArray));
     $picPageNumber = strtolower(end($chapterAndPagesArray));  
+   
+
 
     if($chapterNumber != $picChapterNumber){
         array_push($error, "The chapter number you entered does not match the chapter number of the photo");
@@ -88,14 +91,15 @@ if(isset($_POST['upload'])){
                         $check_pagechapter_result = mysqli_query($db, $check_pagechapter_query); 
                         $pages = mysqli_fetch_array($check_pagechapter_result);
                         
-                        //var_dump($pages); 
+                        
 
                         //check if page associated with chapter and comic already exists 
                         //if not, add to pages table with appropriate page number, chapter number, and comicID
                         if($pages){ 
                             array_push($error, "This page and chapter already exists for this comic and author"); 
                         }else{ 
-                            $query2="INSERT INTO `Pages` (`chapterNumber`, `pageNumber`, `imageName`, `comicID`) VALUES ('$chapterNumber', '$picPageNumber', '$fileName', '$comicID')"; 
+                            $fileNameNew = $fileExt[0]."-". $comicID. ".".$fileActualExt; 
+                            $query2="INSERT INTO `Pages` (`chapterNumber`, `pageNumber`, `imageName`, `comicID`) VALUES ('$chapterNumber', '$picPageNumber', '$fileNameNew', '$comicID')"; 
                             mysqli_query($db, $query2); 
                         }
 
@@ -103,8 +107,8 @@ if(isset($_POST['upload'])){
                         $check_comicchapters_result= mysqli_query($db, $check_comicchapters_query); 
                         $chapters = mysqli_fetch_array($check_comicchapters_result); 
 
-                        var_dump($chapters); 
-                        var_dump(count($chapters)); 
+                        //var_dump($chapters); 
+                        //var_dump(count($chapters)); 
                         //checks if chapterNumber and comicID exists if so dont push 
                         //if not, slap that bad boy into the table son! 
                         if($chapters){ 
@@ -113,37 +117,16 @@ if(isset($_POST['upload'])){
                             $query1="INSERT INTO `Chapters` (`AuthorID`, `chapterNumber`, `ChapterName`, `ComicID`) VALUES ('$AuthorID', '$chapterNumber', '$chapterName', '$comicID')";
                             mysqli_query($db, $query1); 
                         }
-
-
-                        //$both_check_query = "SELECT * FROM Pages WHERE chapterNumber ='$chapterNumber' AND pageNumber='$picPageNumber' LIMIT 1"; 
-                        //$result = mysqli_query($db, $both_check_query);
-                        //$both = mysqli_fetch_array($result); 
-                        
-                        //$pages_check_query = "SELECT * FROM Pages WHERE pageNumber='$picPageNumber' LIMIT 1"; 
-                        ////pageNumber='$picPageNumber'
-                        //$pagesResult = mysqli_query($db, $both_check_query);
-                        //$pages = mysqli_fetch_array($pagesResult);  
-
-                        
-
-                       
-                        //if(Null == mysqli_num_rows($result)){ 
-                            //if mysqli returns no rows 
-                           // $query2="INSERT INTO `Pages` (`chapterNumber`, `pageNumber`, `imageName`, `comicID`) VALUES ('$chapterNumber', '$picPageNumber', '$fileName', '$comicID')"; 
-                           // mysqli_query($db, $query2); 
-//
-                           
-                           // $query1="INSERT INTO `Chapters` (`AuthorID`, `chapterNumber`, `ChapterName`, `ComicID`) VALUES ('$AuthorID', '$chapterNumber', '$chapterName', '$comicID')";
-                           // mysqli_query($db, $query1); 
-                            $fileNameNew = uniqid('', true).".".$fileActualExt; 
+                            //var_dump($fileExt[0]);
+                            //var_dump($fileName);
+                            
+                            
+                            $fileNameNew = $fileExt[0]."-". $comicID. ".".$fileActualExt; 
                             $fileDestination = 'uploads/'.$fileNameNew; 
                             
                             move_uploaded_file($fileTmpName, $fileDestination); 
 
-                        //}else if(Null !== mysqli_num_rows($result) && Null !== mysqli_num_rows($pagesResult)){ 
-                        //    //if mysqli_ returns not null
-                        //    array_push($error, 'This page and chapter are already in database'); 
-                        //}
+                      
                     }//end if error count
                 }//end if name
             }//end if filesize
