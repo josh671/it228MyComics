@@ -168,6 +168,7 @@ if(isset($_POST['new_comic'])){
     }
     
     $new_comic_name = $_POST['checkComicName']; 
+    $new_comic_description = $_POST['comicDescription']; 
     $AuthorID = $_SESSION['id']; 
     var_dump($AuthorID); 
     var_dump($new_comic_name);
@@ -179,7 +180,8 @@ if(isset($_POST['new_comic'])){
         var_dump($comics);
         array_push($comicError, "The Comic Already exists");
     }else{ 
-        $comic_insert = "INSERT INTO `Comics` (`ComicTitle`, `AuthorID`) VALUES ('$new_comic_name', '$AuthorID')";
+    $new_comic_description = $_POST['comicDescription']; 
+        $comic_insert = "INSERT INTO `Comics` (`ComicTitle`, `AuthorID`, `ComicDescription`) VALUES ('$new_comic_name', '$AuthorID', '$new_comic_description')";
         mysqli_query($db, $comic_insert); 
     }
 

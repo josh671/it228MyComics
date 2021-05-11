@@ -60,36 +60,7 @@ nav li :hover{
 
 /* START OF AUTHORS PAGE */ 
 
-#authors_table { 
-    background: green; 
-    width: 100% ;
-    margin: 0 auto;
-}
 
-#auth_table { 
-    background: blue; 
-    padding: 10px; 
-    border: 1px solid black; 
-    width: 100%; 
-} 
-
-#auth_table tr{ 
-    width: 100%; 
-    background: red; 
-  
-} 
-
-.th_one { 
-    width: 70%; 
-    margin-top: 10px; 
-    margin-bottom: 10px; 
-}
-
-table td{ 
-    padding-top: 10px; 
-    padding-bottom: 10px; 
-    padding-left: 5px; 
-}
 
 .col-sm-3{ 
     padding: 10px; 
@@ -117,9 +88,7 @@ table td{
     margin-bottom: 10px; 
 }
 
-.inside p{ 
-    
-}
+
  
 .authors .userName{ 
     font-family: 'Cinzel', serif; 
@@ -146,6 +115,33 @@ table td{
 }
 
 .authors .row { 
+   margin: 0 auto;
+    max-width: 1200px; 
+    min-width: 500px;
+}
+
+/* START OF COMICS PAGE */
+.comics .userName{ 
+    font-family: 'Cinzel', serif; 
+    font-size: 1.2em; 
+    margin-bottom: 5px;
+    padding-bottom: 10px; 
+    border-bottom:1px solid black; 
+}
+
+.comics .description{ 
+   font-size: 10px;
+    display: block; 
+    margin-bottom: 3px; 
+
+}
+
+.comics .comicslist{ 
+    margin-bottom: 0; 
+    font-size: .8em;
+}
+
+.comics .row { 
    margin: 0 auto;
     max-width: 1200px; 
     min-width: 500px;
@@ -204,4 +200,10 @@ table td{
 
 #upload_form fieldset{ 
     padding: 30px; 
+} 
+
+#upload_form textarea{ 
+    width: 100%; 
+    border-radius: 6px; 
+    
 }
