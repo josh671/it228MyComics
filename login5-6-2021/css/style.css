@@ -146,6 +146,41 @@ nav li :hover{
     max-width: 1200px; 
     min-width: 500px;
 }
+/* START OF CHAPTERS-VIEWS PAGE */
+.chapters .userName{ 
+    font-family: 'Cinzel', serif; 
+    font-size: 1.2em; 
+    margin-bottom: 5px;
+    padding-bottom: 10px; 
+    border-bottom:1px solid black; 
+}
+
+.chapters .description{ 
+   font-size: 10px;
+    display: block; 
+    margin-bottom: 3px; 
+
+}
+
+.chapters .chapterslist{ 
+    margin-bottom: 0; 
+    font-size: .8em;
+}
+
+.chapters .row { 
+   margin: 0 auto;
+    max-width: 1200px; 
+    min-width: 500px;
+}
+
+#images_boxes{ 
+    width: 1000px;
+}
+
+#images_boxes .inside{ 
+    height: 850px; 
+    margin-bottom: 10px; 
+}
 /* start of register form */
 .register #login-form-container{ 
     margin: 0 auto; 
