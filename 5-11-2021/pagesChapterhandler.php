@@ -75,7 +75,7 @@ if(isset($_POST['upload'])){
         //extension allowed 
         //errors happened 
         //file size 
-        //if not take temporary upload and save to uploads 
+        //if not take temporary upload and save to images 
     if(in_array($fileActualExt, $allowed)){ //checks array $allowed to see if extensions allowed
         if($fileError == 0){ 
             if($fileSize < 10000000){ 
@@ -103,7 +103,7 @@ if(isset($_POST['upload'])){
                             
                             
                             
-                            $fileDestination = 'uploads/'.$fileNameNew; 
+                            $fileDestination = 'images/'.$fileNameNew; 
                             
                             move_uploaded_file($fileTmpName, $fileDestination); 
 
@@ -219,7 +219,7 @@ if(isset($_POST['new_pages'])){
                             
                             
                             $fileNameNew = $fileExt[0]."-". $comicID. ".".$fileActualExt; 
-                            $fileDestination = 'uploads/'.$fileNameNew; 
+                            $fileDestination = 'images/'.$fileNameNew; 
                             
                             move_uploaded_file($fileTmpName, $fileDestination); 
 
