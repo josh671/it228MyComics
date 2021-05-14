@@ -39,7 +39,7 @@ if(!isset($_SESSION['id'])){            //if username has not been set
 <div class="row">
 <div class="col">
 <form id="upload_form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data"> 
-    <h3>Adding new Pages or chapters to existing Comics.</h3>
+    <h3>Adding Chapters to existing Comics.</h3>
     
     <fieldset>
         <label>Comic Name</label> 
@@ -51,12 +51,7 @@ if(!isset($_SESSION['id'])){            //if username has not been set
         <label>Chapter Number</label> 
         <input type="number" name="chapterNumber" value="<?php if(isset($_POST['chapterNumber'])) echo  $_POST['chapterNumber']  ?>"> 
         
-        <label>Page Number</label> 
-        <input type="number" name="pageNumber" value="<?php if(isset($_POST['pageNumber'])) echo  $_POST['pageNumber']  ?>"> 
-        
-        <label>User Email</label> 
-        <input type="text" name="userEmail" value="<?php if(isset($_POST['userEmail'])) echo  $_POST['userEmail']  ?>"> 
-        
+        <label>Chapters Cover Art</label>
         <input type="file" name="file">
         <button type='submit' name="upload">Upload File</button>
     
@@ -75,7 +70,41 @@ if(!isset($_SESSION['id'])){            //if username has not been set
 </form> 
 </div>
 
+<!-- START OF PAGES FORM  -->
+<div class="col">
+<form id="upload_form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data"> 
+    <fieldset>
+    <h2>Adding New Pages to Existing Comics?</h2>
+        <label>Comic Name</label> 
+        <input type="text" name="pagesCheckComicName" value="<?php if(isset($_POST['pagesCheckComicName'])) echo  $_POST['pagesCheckComicName']  ?>" > 
+        
+        <label>Chapter Number</label> 
+        <input type="text" name="pagesChapterNumber" value="<?php if(isset($_POST['pagesChapterNumber'])) echo  $_POST['pagesChapterNumber']  ?>" > </inpur>
+        
+        <label>Page Number</label> 
+        <input type="text" name="pagesPageNumber" value="<?php if(isset($_POST['pagesPageNumber'])) echo  $_POST['pagesPageNumber']  ?>" > </inpur>
+        
 
+        <input type="file" name="pages_file">
+        <button type='submit' name="new_pages">Upload File</button>
+        
+       
+    
+    <?php if(count($pagesError) > 0) : ?> 
+
+    <div class="error"> 
+        <?php
+
+         foreach($pagesError as $error) : ?>
+    <p> <?php echo $error; ?>  </p>
+        <?php endforeach; 
+        ?>
+    </div>   
+        <?php endif ?> 
+
+    </fieldset>
+</form> 
+</div>
 
 
 <div class="col">
