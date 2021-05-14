@@ -37,7 +37,7 @@ if(mysqli_num_rows($result) > 0){
          <div class="inside shadow chapter_number_containers">';
          echo '<p class="userName">' . $row['chapterDescription'] . '</p>'; 
          echo '<p class="userName">' . $row['chapterNumber'] .': '. $row['ChapterName'] .  '</p>'; 
-         echo '<p class="userName">' . $row['ChapterImage'] . '</p>'; 
+         echo '<p class="userName"><img src="uploads/'.$row['ChapCoverArt'].'"></p>'; 
          echo '</div></div>'; 
                           }
 
