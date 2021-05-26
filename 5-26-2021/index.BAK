@@ -1,0 +1,105 @@
+<?php include('./includes/config.php'); 
+      include('./includes/header.php'); 
+      include('./includes/nav.php'); ?>
+<div class="contaier">
+<div id="news_container">
+<div id="new_nav">
+      <ul>
+            <li>Marvel News</li>
+            <li>Industry News</li>
+            <li>Graphic Novel News</li>
+      </ul>
+</div>
+<div class="news_feed one news_feed_active">
+      <?php 
+      $request="https://rss.nytimes.com/services/xml/rss/nyt/Movies.xml";
+      $response = file_get_contents($request); 
+      $xml = simplexml_load_string($response); 
+
+      print '<h1 class="news_title">'.$xml->channel->title.'</h1>'; 
+      foreach($xml->channel->item as $story){ 
+          echo '<a class="news_link" href="'.$story->link.'">'.$story->title.'</a><br \ >'; 
+          echo '<p class="news_description">'.$story->description.'</p>'; 
+      }
+      ?>
+</div>
+<div class="news_feed two">
+      <h1 class="news_title">Industry News</h1>
+      <p id="news_feed_source">Provided by "Times Union"</p>
+      <?php 
+      $request="http://blog.timesunion.com/comicbooks/feed";
+      $response = file_get_contents($request); 
+      $xml = simplexml_load_string($response); 
+
+      foreach($xml->channel->item as $story){ 
+          echo '<a class="news_link" href="'.$story->link.'">'.$story->title.'</a><br \ >'; 
+          echo '<p class="news_description">'.$story->description.'</p>'; 
+      }
+      ?>
+
+</div>
+<div class="news_feed one news_feed_active">
+      <?php 
+      $request="https://www.comicsbeat.com/feed/";
+      $response = file_get_contents($request); 
+      $xml = simplexml_load_string($response); 
+
+      print '<h1 class="news_title">Graphic Novel News</h1>'; 
+      foreach($xml->channel->item as $story){ 
+
+          echo '<p>Story:<a class="news_link" href="'.$story->link.'">'.$story->title.'</a></p>'; 
+          echo '<p class="news_description">'.$story->description.'</p>'; 
+      }
+      ?>
+</div>
+</div><!-- END NEWS CONTAINER -->
+</div><!-- END CONTAINER -->
+
+</body>
+</html> 
+
+<!-- .container{ 
+    width: 100%; 
+    padding-top: 100px; 
+    display: block; 
+    position: absolute;
+}
+
+
+.news_feed{ 
+    width: 70%; 
+    height: 600px; 
+    overflow: scroll;
+    margin: 0 auto; 
+    background: lightgreen; 
+    padding: 20px;
+    border: solid 2px grey; 
+    border-radius: 3px; 
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+   display: block; 
+    
+}
+
+.new_feed_active h3 { 
+    font-size: 1.2em;
+}
+
+.news_feed_active{ 
+    display: block;
+}
+
+
+
+.news_title{ 
+    text-align: center;
+    font-family: 'Pattaya', sans-serif;
+    color: black;
+    font-size: 3em;
+    
+}
+
+
+.two{ 
+    background: lightblue;
+}
+ -->
