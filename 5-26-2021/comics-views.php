@@ -1,7 +1,7 @@
 <?php include('./includes/config.php'); 
 if(isset($_GET['id'])) { 
     $id = (int)$_GET['id']; 
-    var_dump($id); 
+   
 }   else    { 
 
     header('Location: authors.php');
@@ -60,3 +60,8 @@ if(mysqli_num_rows($result) > 0){
 
 </div>
 </div>
+
+
+
+</body> 
+</html>

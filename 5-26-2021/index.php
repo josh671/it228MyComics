@@ -67,7 +67,21 @@
           echo '<p class="news_description">'.$story->description.'</p>'; 
       }
       ?>
+</div>
+<div class="news_feed one news_feed_active">
+<h1 class="news_title">MCU/DCU News</h1>
+      <p id="news_feed_source">Provided by "Comicverse"</p>
+      <?php 
+      $request="https://comicsverse.com/feed";
+      $response = file_get_contents($request); 
+      $xml = simplexml_load_string($response); 
 
+      foreach($xml->channel->item as $story){ 
+
+          echo '<a class="news_link" href="'.$story->link.'">New Story: '.$story->title.'</a>'; 
+          echo '<p class="news_description">'.$story->description.'</p>'; 
+      }
+      ?>
 </div>
 </div><!-- END NEWS CONTAINER -->
 </div><!-- END CONTAINER -->

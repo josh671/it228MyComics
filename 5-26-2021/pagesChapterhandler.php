@@ -251,27 +251,68 @@ if(isset($_POST['new_comic'])){
     if(empty($_POST['checkComicName'])){ 
         array_push($comicError, 'The Comic name is empty.');
     }
+    if(!strlen(trim($_POST['comicDescription']))){ 
+        array_push($comicError, 'Please describe your comic.');
+    }
     
     $new_comic_name = $_POST['checkComicName']; 
     $new_comic_description = $_POST['comicDescription']; 
     $AuthorID = $_SESSION['id']; 
-    var_dump($AuthorID); 
-    var_dump($new_comic_name);
+    
     $comic_check_query = "SELECT ComicTitle FROM `Comics` WHERE ComicTitle='$new_comic_name'";
     $comicResults = mysqli_query($db, $comic_check_query); 
     $comics=mysqli_fetch_assoc($comicResults);  
 
+    $file=$_FILES['cover_art_file']; 
+    $fileName=$_FILES['cover_art_file']['name']; 
+    $fileSize=$_FILES['cover_art_file']['size']; 
+    $fileError=$_FILES['cover_art_file']['error']; 
+    $fileTmpName=$_FILES['cover_art_file']['tmp_name']; 
+    $comicTitle=$_POST['comicName']; 
+
+    
+    $fileExt = explode('.', $fileName); 
+    $fileActualExt = strtolower(end($fileExt)); //want the extension which is last item of $fileExt array; 
+    $allowed = array('jpg', 'jpeg', 'png'); 
+    //getting chapter name and file name 
+    $fileChapterNameAndPages = strtolower(reset($fileExt)); 
+    $comics_coverName = explode('-',$fileChapterNameAndPages); 
+    $comic_cover1=$comics_coverName[0];
+    $comic_cover2=$comics_coverName[1];
+    if((int)$comic_cover1 != 00){
+        array_push($comicError, "Numbers need to be 00");
+    }
+
+    if((int)$comic_cover2 != 00){ 
+        array_push($comicError, 'Numbers need to be ))'); 
+    }
+     
+
+ if(in_array($fileActualExt, $allowed)){ //checks array $allowed to see if extensions allowed
+        if($fileError == 0){ 
+            if($fileSize < 10000000){ 
+                // do something 
+    
     if($comics){ 
         var_dump($comics);
         array_push($comicError, "The Comic Already exists");
     }else{ 
     $new_comic_description = $_POST['comicDescription']; 
-        $comic_insert = "INSERT INTO `Comics` (`ComicTitle`, `AuthorID`, `ComicDescription`) VALUES ('$new_comic_name', '$AuthorID', '$new_comic_description')";
+        $comic_insert = "INSERT INTO `Comics` (`ComicTitle`, `AuthorID`, `ComicDescription`, `ComicCoverArt`) VALUES ('$new_comic_name', '$AuthorID', '$new_comic_description', '$fileName')";
         mysqli_query($db, $comic_insert); 
-    }
+           
+                   
+                }//end if name
+            }//end if filesize
+        }else { 
+            array_push($error, 'No errors happened'); 
+            
+        }//end else
+    }else { 
+        array_push($error,'No File Selected or File Type Not Allowed'); 
+        //echo 'Format not allowed'; 
+        
+    }//end format
+    //header("Location: chapters.php");// to return to any page
 
- 
-    
-
-    
-    }
+}//end of adding chapters and pages  

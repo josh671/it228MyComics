@@ -47,9 +47,11 @@ if(!isset($_SESSION['id'])){            //if username has not been set
         <input type="text" name="checkComicName" value="<?php if(isset($_POST['checkComicName'])) echo  $_POST['checkComicName']  ?>" required> 
         
         <label>Description of Comic</label> 
-        <textarea type="text" name="comicDescription" value="<?php if(isset($_POST['comicDescription'])) echo  $_POST['comicDescription']  ?>" required> </textarea>
+        <textarea type="text" name="comicDescription" value="<?php if(isset($_POST['comicDescription'])) echo  $_POST['comicDescription']  ?>" required> </textarea> 
+
+        <label>Comics Cover Art</label>
+        <input type="file" name="cover_art_file">
         
-       
     <button type='submit'  name="new_comic">Create new Comic</button>
     <?php if(count($comicError) > 0) : ?> 
 

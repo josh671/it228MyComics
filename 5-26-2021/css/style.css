@@ -407,7 +407,7 @@ ADD SHADOW ELEMENT AS WELL AS RESIZE ELEMENT.
 .uploads button:hover{ 
     color: red; 
 }
-
+/* START OF COMICS PAGE */
 
 
 /* ABOUT PAGE */
@@ -416,6 +416,10 @@ ADD SHADOW ELEMENT AS WELL AS RESIZE ELEMENT.
     padding: 10px; 
     margin: 0 auto; 
     text-align: center;
+}
+
+.about_container h1{ 
+    font-family: 'Pattaya', sans-serif;
 }
 
 #mission_statement{ 
@@ -462,6 +466,10 @@ ADD SHADOW ELEMENT AS WELL AS RESIZE ELEMENT.
     border-bottom: 1px solid black;
     display: none; 
     padding: 10px; 
+}
+
+.column h2{ 
+    font-family: 'Pattaya', sans-serif;
 }
 .instructions_nav_active{ 
     background-color: lightGrey; 
