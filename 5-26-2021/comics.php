@@ -6,7 +6,7 @@ include('./includes/nav.php');
 $db = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die('initial host connection problems'); ?>
 
 <div id="container">
-<h1 id="authors_header">Here are a list of Authors</h1> 
+<h1 id="comics_header">Here is MyComics full list of comics!</h1> 
 
 <div class="row">
 
@@ -30,15 +30,12 @@ $db = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die('initial hos
 
              
              echo '<div id="responsive_col" class="col-4" >
-                  <div class="inside shadow">';
+             <div class="inside shadow">';
                   
-            
-                  echo '<img class="rounded-circle z-depth-2" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-                   data-holder-rendered="true">';
-                
-                echo '<p class="description">'.$row['ComicTitle'].'</p>';
-                echo '<p class="comic_total">'.$row['ComicDescription'].'</p>'; 
-                echo '</div></div>'; 
+            echo '<img  class="comic_image" src=images/coverart/'.$row['ComicCoverArt'].' ></p>';
+            echo '<p class="description"><a href="chapters-views.php?id='.$row['ComicID'].'">'.$row['ComicTitle'].'</a></p>';
+            echo '<p class="comic_total">'.$row['ComicDescription'].'</p>'; 
+            echo '</div></div>';  
                                  }
 
                      }else {//what if there are no people 

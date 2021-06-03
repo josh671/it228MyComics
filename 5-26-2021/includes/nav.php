@@ -16,15 +16,8 @@
       
     </nav>
     <!-- end nav -->
-
-
-
-
-
-            <!-- <nav>
-                <ul>
-                 <li class="Hell">My Comics</li>
-                <?php echo makelinks($nav); ?> 
-                </ul>
-            </nav> -->
    </header> 
+
+   <a class="fav" href="https://www.facebook.com/"><img alt="fav" src="images/headerImages/icons8-facebook-100.png"></a>
+   <a class="fav fav_two" href="https://www.instagram.com/"><img alt="fav" src="images/headerImages/icons8-instagram-old-100.png"></a>
+   <a class="fav fav_three" href="https://twitter.com/"><img alt="fav" src="images/headerImages/icons8-twitter-100.png"></a>

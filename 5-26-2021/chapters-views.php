@@ -37,7 +37,7 @@ if(mysqli_num_rows($result) > 0){
          <div class=" shadow chapter_number_containers">';
          
          echo '<p class="chapDisplay">' . $row['chapterNumber'] .': '. $row['ChapterName'] .  '</p>'; 
-         echo '<div class="chapDisplay"><img src="images/'.$row['ChapCoverArt'].'"></div>'; 
+         echo '<div class="chapDisplay"><img src="images/chaptersimages/'.$row['ChapCoverArt'].'"></div>'; 
          echo '</div></div>'; 
                           }
 
@@ -72,7 +72,7 @@ if(mysqli_num_rows($result) > 0){
               <div class=" shadow">';
          echo '<p class="userName">Chapter: ' . $row['chapterNumber'] . ':'. $row['pageNumber'].'</p>'; 
          echo '<div id="image_container">';
-         echo '<img id="comic_page_image" src="images/'.$row['imageName'].'">';
+         echo '<img id="comic_page_image" src="images/pagesimages/'.$row['imageName'].'">';
          echo '</div>'; 
          echo '</div></div>'; 
                           }

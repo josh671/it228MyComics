@@ -103,7 +103,7 @@ if(isset($_POST['upload'])){
                             
                             
                             
-                            $fileDestination = 'images/'.$fileNameNew; 
+                            $fileDestination = 'images/chaptersimages/'.$fileNameNew; 
                             
                             move_uploaded_file($fileTmpName, $fileDestination); 
 
@@ -221,7 +221,7 @@ if(isset($_POST['new_pages'])){
                             
                             
                             $fileNameNew = $fileExt[0]."-". $comicID. ".".$fileActualExt; 
-                            $fileDestination = 'images/'.$fileNameNew; 
+                            $fileDestination = 'images/pagesimages/'.$fileNameNew; 
                             
                             move_uploaded_file($fileTmpName, $fileDestination); 
 
@@ -251,10 +251,13 @@ if(isset($_POST['new_comic'])){
     if(empty($_POST['checkComicName'])){ 
         array_push($comicError, 'The Comic name is empty.');
     }
+    if(empty($_POST['coverArt'])){ 
+        array_push($comicError, 'Please name your coverart with one word.');
+    }
     if(!strlen(trim($_POST['comicDescription']))){ 
         array_push($comicError, 'Please describe your comic.');
     }
-    
+    $cover_art_name = $_POST['coverArt']; 
     $new_comic_name = $_POST['checkComicName']; 
     $new_comic_description = $_POST['comicDescription']; 
     $AuthorID = $_SESSION['id']; 
@@ -284,7 +287,7 @@ if(isset($_POST['new_comic'])){
     }
 
     if((int)$comic_cover2 != 00){ 
-        array_push($comicError, 'Numbers need to be ))'); 
+        array_push($comicError, 'Numbers need to be 00'); 
     }
      
 
@@ -294,13 +297,18 @@ if(isset($_POST['new_comic'])){
                 // do something 
     
     if($comics){ 
-        var_dump($comics);
+        
         array_push($comicError, "The Comic Already exists");
     }else{ 
-    $new_comic_description = $_POST['comicDescription']; 
-        $comic_insert = "INSERT INTO `Comics` (`ComicTitle`, `AuthorID`, `ComicDescription`, `ComicCoverArt`) VALUES ('$new_comic_name', '$AuthorID', '$new_comic_description', '$fileName')";
-        mysqli_query($db, $comic_insert); 
+    
            
+        $fileNameNew = $fileExt[0]."-". $cover_art_name. ".".$fileActualExt; 
+        
+        $fileDestination = 'images/coverart/'.$fileNameNew; 
+        $new_comic_description = $_POST['comicDescription']; 
+        $comic_insert = "INSERT INTO `Comics` (`ComicTitle`, `AuthorID`, `ComicDescription`, `ComicCoverArt`) VALUES ('$new_comic_name', '$AuthorID', '$new_comic_description', '$fileNameNew')";
+        mysqli_query($db, $comic_insert); 
+        move_uploaded_file($fileTmpName, $fileDestination); 
                    
                 }//end if name
             }//end if filesize

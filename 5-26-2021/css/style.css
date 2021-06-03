@@ -14,8 +14,31 @@ header{
     margin-bottom: 100px; 
 }
 
+.fav{
+position: fixed;
+right: 0;
+top: 0;
+z-index: 100000000000000;
+width: 75px; 
+}
+.fav_two{
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin-right:70px;
+    z-index: 100000000000000;
+    }
 
-
+.fav_three{ 
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin-right:140px;
+    z-index: 100000000000000;
+}
+.fav img{ 
+    width:75px;
+}
 nav { 
   position: fixed; 
   top: 0; 
@@ -41,11 +64,11 @@ nav {
   
   .topnav a:hover {
     background-color: whtie;
-    color: black;
+    color: #43c3f1 ;
   }
   
   .topnav a.active {
-    background-color: greenyellow;
+    background-color: #43c3f1 ;
     color: white;
   }
   
@@ -129,20 +152,79 @@ nav {
     font-size: 3em;
 }
 
-#newLink{ 
-    font-size:large; 
+
+#news_instructions{ 
+    width: 60%; 
+    height: 400px; 
+    overflow: scroll;
+    margin: 0 auto;
+    border: solid 1px black; 
+    border-radius: 3px; 
+}
+
+#news_instructions_nav{ 
+    border-bottom:black 1px solid; 
+    width: 100%; 
+    height: 50px; 
 }
 
 
-.two{ 
-    background: lightblue;
+#news_instructions_nav ul{ 
+    width:100%; 
+    float: left;
+    list-style-type: none; 
 }
 
+#news_instructions_nav li{ 
+    float: left;
+    text-align: center;
+    list-style-type: none; 
+    width: 33.3%;
+    margin-top: 20px;
+    color: black; 
+}
 
+#news_instructions_nav li:hover{ 
+    background:  #43c3f1 ;
+    color: white; 
+    cursor: pointer;
+} 
+
+#home_wrapper{ 
+    margin-top: 50px; 
+    width: 100%;
+    background-color: lightblue; 
+
+} 
+
+.home_image_container{ 
+    width: 30%; 
+    margin-left: 3.33%; 
+    padding: 10px; 
+    float: left;
+    padding: 10px; 
+} 
+
+.home_image_container img{ 
+    width: 100%; 
+}
+.home_image_container img:hover{ 
+    transform:scale(1.2);
+    z-index: 1000; 
+    border: solid black 1px; 
+}
 
 /* START OF AUTHORS PAGE */ 
+
+
 .authors #container{ 
     text-align: center;
+}
+
+.authors #authors_header{ 
+    margin:0 auto;
+    margin-bottom: 30px;
+    font-family: 'Pattaya', sans-serif;
 }
 
 .authors .row { 
@@ -207,13 +289,20 @@ nav {
 }
 
 
-/* START OF COMICS PAGE */
+
+/* START OF COMICS VIEWS PAGE */
+.comics #container{ 
+    text-align: center;
+}
 .comics .row { 
     margin: 0 auto;
     max-width: 940px; 
     min-width: 500px;
 }
 
+#comics_header{ 
+    font-family: 'Pattaya', sans-serif;
+}
 .comics .userName{ 
     font-family: 'Cinzel', serif; 
     font-size: 1.2em; 
@@ -232,6 +321,15 @@ nav {
 .comics .comicslist{ 
     margin-bottom: 0; 
     font-size: .8em;
+}
+.image_container{ 
+    width: 100%; 
+    padding: 5px; 
+
+}
+.comic_image{ 
+    width: 80%; 
+    object-fit: cover; 
 }
 
 /* START OF CHAPTERS-VIEWS PAGE */
@@ -405,7 +503,8 @@ ADD SHADOW ELEMENT AS WELL AS RESIZE ELEMENT.
 }
 
 .uploads button:hover{ 
-    color: red; 
+    color: black;
+    background-color:  #43c3f1 ; 
 }
 /* START OF COMICS PAGE */
 
@@ -455,7 +554,7 @@ ADD SHADOW ELEMENT AS WELL AS RESIZE ELEMENT.
 }
 
 #about_instructions_nav li:hover{ 
-    background: grey; 
+    background:  #43c3f1 ;
     color: white; 
     cursor: pointer;
 }
@@ -472,8 +571,7 @@ ADD SHADOW ELEMENT AS WELL AS RESIZE ELEMENT.
     font-family: 'Pattaya', sans-serif;
 }
 .instructions_nav_active{ 
-    background-color: lightGrey; 
-    color: black;
+    background-color:  #43c3f1 ;
 }
 
 
@@ -497,6 +595,10 @@ ADD SHADOW ELEMENT AS WELL AS RESIZE ELEMENT.
         margin-left:3.1%;
     }
 
+    .comics_pages_row{ 
+        width: 100%; 
+        padding: 20px;
+    }
 
   }
 
@@ -538,6 +640,11 @@ ADD SHADOW ELEMENT AS WELL AS RESIZE ELEMENT.
         margin-bottom: 0px;
     }
 
+    .comics_pages_row{ 
+        width: 100%; 
+        padding: 5px;
+    }
+
   }
 
 
@@ -571,14 +678,39 @@ ADD SHADOW ELEMENT AS WELL AS RESIZE ELEMENT.
     #upload_form fieldset{ 
         padding: 10px; 
         min-width: 100%; 
-        font-size: .8em;
-        
-
-        
+        font-size: .8em; 
     }
 
     .uploads .col-4{ 
         min-width: 70%;
         margin: 10px auto
     }
+
+    .comics_pages_row{ 
+        width: 100%; 
+      
+    }
+
+    .fav{
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 100000000000000;
+        margin-left:70px
+        }
+        .fav_two{
+            position: fixed;
+            left: 0;
+            top: 0;
+            margin-left:140px;
+            z-index: 100000000000000;
+            }
+        
+        .fav_three{ 
+            position: fixed;
+            left: 0;
+            top: 0;
+            margin-left:210px;
+            z-index: 100000000000000;
+        }
   }

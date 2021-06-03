@@ -31,7 +31,7 @@ if(!isset($_SESSION['id'])){            //if username has not been set
    </h3>
     <br> 
 <!-- position on left side -->
-  <p><a href="chapters.php ">Log out</a></p>
+  <p><a href="index.php">Log out</a></p>
     
     <?php  //endif     ?> 
 <div class="form_container">
@@ -48,6 +48,9 @@ if(!isset($_SESSION['id'])){            //if username has not been set
         
         <label>Description of Comic</label> 
         <textarea type="text" name="comicDescription" value="<?php if(isset($_POST['comicDescription'])) echo  $_POST['comicDescription']  ?>" required> </textarea> 
+
+        <label>Cover art tag for Photo (must be one word)</label> 
+        <input type="text" name="coverArt" value="<?php if(isset($_POST['coverArt'])) echo  $_POST['coverArt']  ?>" required> 
 
         <label>Comics Cover Art</label>
         <input type="file" name="cover_art_file">
